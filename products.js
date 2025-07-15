@@ -21,7 +21,7 @@ const products = [
     description: "soyez specials et sentez vous exceptionnel avec nos maquillages",
     price: 14000,
     category: "maquillage",
-    image: "images/makeup.png"
+    image: "ecommerce/images/makeup.png"
   },
   {
     id: 4,
