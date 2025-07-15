@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+  const password = prettyk("Mot de passe admin ?");
+  if (password !== "monmotdepasse") {
+    alert("Accès refusé");
+    window.location.href = "index.html";
+  }
+</script>
+
+</head>
+<body>
+  <header>
+    <h1>Ajouter un produit</h1>
+    <a href="index.html">← Retour</a>
+  </header>
+  <main>
+    <form id="add-product-form">
+      <input type="text" id="name" placeholder="Nom du produit" required><br>
+      <input type="text" id="description" placeholder="Description" required><br>
+      <input type="number" id="price" placeholder="Prix (€)" required><br>
+      <input type="text" id="image" placeholder="Chemin ou URL image" required><br>
+
+      <!-- ✅ Catégorie ajoutée ici -->
+      <select id="category" required>
+        <option value="">Choisir une catégorie</option>
+        <option value="vetement">Vêtements</option>
+        <option value="bijoux">Bijoux</option>
+        <option value="sac">Sacs</option>
+        <option value="sac">montre</option>
+        <option value="parfum">parfum</option>
+      </select><br>
+
+      <button type="submit">Ajouter</button>
+    </form>
+
+    <h3>📦 Produits simulés</h3>
+    <ul id="product-preview"></ul>
+  </main>
+
+  <script>
+    const preview = document.getElementById("product-preview");
+
+    document.getElementById("add-product-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const newProduct = {
+        id: Date.now(),
+        name: document.getElementById("name").value,
+        description: document.getElementById("description").value,
+        price: parseFloat(document.getElementById("price").value),
+        image: document.getElementById("image").value,
+        category: document.getElementById("category").value
+      };
+
+      const saved = JSON.parse(localStorage.getItem("customProducts")) || [];
+      saved.push(newProduct);
+      localStorage.setItem("customProducts", JSON.stringify(saved));
+
+      updatePreview(saved);
+      e.target.reset();
+    });
+
+    function updatePreview(list) {
+      preview.innerHTML = "";
+      list.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.name} - ${p.price} fr (${p.category})`;
+        preview.appendChild(li);
+      });
+    }
+
+    updatePreview(JSON.parse(localStorage.getItem("customProducts")) || []);
+  </script>
+</body>
+</html>
+
