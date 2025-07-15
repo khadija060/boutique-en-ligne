@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Commande</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Formulaire de commande</h1>
+    <a href="index.html">← Retour à la boutique</a>
+  </header>
+  <main>
+    <form id="order-form">
+      <label>Nom complet : <input type="text" name="name" required></label>
+      <label>Adresse : <input type="text" name="address" required></label>
+      <label>Email : <input type="email" name="email" required></label>
+      <button type="submit">Valider la commande</button>
+    </form>
+    <div id="confirmation" style="display:none;">
+      <h3>✅ Merci pour votre commande !</h3>
+    </div>
+  </main>
+  <script>
+    document.getElementById("order-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("cart");
+      document.getElementById("order-form").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+    });
+  </script>
+</body>
+</html>
+
