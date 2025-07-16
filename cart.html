@@ -47,7 +47,7 @@
 
       const commande = cartItems.map(p => `${p.name} - ${p.price}€`).join("%0A");
 
-      const mailto = `mailto:tonemail@example.com?subject=Nouvelle commande&body=Nom: ${nom}%0AEmail: ${email}%0ACommande:%0A${commande}%0A%0AAdresse: ${message}`;
+      const mailto = `mailto:khadijcisse@gmail.com?subject=Nouvelle commande&body=Nom: ${nom}%0AEmail: ${email}%0ACommande:%0A${commande}%0A%0AAdresse: ${message}`;
       window.location.href = mailto;
 
       localStorage.removeItem("cart");
